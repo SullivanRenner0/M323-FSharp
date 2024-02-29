@@ -11,6 +11,9 @@
     <Compile Include="W3\Aufgabe 4.fs" />
     <Compile Include="W3\Aufgabe 5.fs" />
     <Compile Include="W3\Aufgabe 6.fs" />
+    <Compile Include="W4\Partiell.fs" />
+    <Compile Include="W4\Tuples.fs" />
+    <Compile Include="W4\Aufgabe 7.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
