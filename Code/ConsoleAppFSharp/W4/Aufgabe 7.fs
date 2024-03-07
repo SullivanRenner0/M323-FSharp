@@ -1,75 +1,84 @@
 ﻿module Aufgabe_7
+open System;
 
 let divide a b = 
   match b with
-    | 0.0 -> 0.0
+    | 0.0 -> raise(new DivideByZeroException())
     | _ -> a/b
 
-let kehrwert (zaehler:float, nenner:float) = 
-  (nenner, zaehler)
+let rec ggT a b =
+  match b
+  with
+  | 0 -> a
+  | _ -> ggT b (a % b)
 
-let multk (b: float*float) (f:float) = 
-  let zaehler, nenner = b
-  (zaehler*f, nenner*f)
-
-let mult (b1:float*float) (b2:float*float) = 
-  let zaehler1, nenner1 = b1
-  let zaehler2, nenner2 = b2
-  (zaehler1*zaehler2, nenner1*nenner2)
-
-let divk (b:float*float) (f:float) = 
-  let zaehler, nenner = b
-  (divide zaehler f, nenner)
-
-let div (b1:float*float) (b2:float*float) = 
-  let zaehler1, nenner1 = b1
-  let zaehler2, nenner2 = b2
-  (zaehler1*nenner2, nenner1*zaehler2)
-
-
-let asFloat (b:float*float) = 
+let asFloat b = 
   let zaehler, nenner = b
   divide zaehler nenner
+  
+let kuerze b = 
+  let zaehler, nenner = b
+  let ggt = ggT zaehler nenner
+  (int)(divide zaehler ggt), (int)(divide nenner ggt)
 
-let erweitere (b:float*float) (f:float) = 
+let erweitere b f = 
   let zaehler, nenner = b
   (zaehler*f, nenner*f)
 
-let kuerze (b:float*float) (f:float) = 
+let kehrwert (zaehler, nenner) = 
+  kuerze (nenner, zaehler)
+
+let multk b f = 
   let zaehler, nenner = b
-  (divide zaehler f, divide nenner f)
+  kuerze (zaehler*f, nenner*f)
 
-let add (b1:float*float) (b2:float*float) = 
+let mult b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
-  (zaehler1*nenner2 + zaehler2*nenner1, nenner1*nenner2)
+  kuerze (zaehler1*zaehler2, nenner1*nenner2)
 
-let sub (b1:float*float) (b2:float*float) =
+let divk b divisor = 
+  let zaehler, nenner = b
+  kuerze (zaehler, nenner * divisor)
+
+let div b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
-  (zaehler1*nenner2 - zaehler2*nenner1, nenner1*nenner2)
+  kuerze (zaehler1*nenner2, nenner1*zaehler2)
 
-let equal (b1:float*float) (b2:float*float) = 
+let add b1 b2 = 
+  let zaehler1, nenner1 = b1
+  let zaehler2, nenner2 = b2
+  kuerze (zaehler1*nenner2 + zaehler2*nenner1, nenner1*nenner2)
+
+let sub b1 b2 =
+  let zaehler1, nenner1 = b1
+  let zaehler2, nenner2 = b2
+  kuerze (zaehler1*nenner2 - zaehler2*nenner1, nenner1*nenner2)
+
+
+
+let equal b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
   zaehler1*nenner2 = zaehler2*nenner1
 
-let isGreater (b1:float*float) (b2:float*float) = 
+let isGreater b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
   zaehler1*nenner2 > zaehler2*nenner1
 
-let isLess (b1:float*float) (b2:float*float) =
+let isLess b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
   zaehler1*nenner2 < zaehler2*nenner1
 
-let isGreaterOrEqual (b1:float*float) (b2:float*float) = 
+let isGreaterOrEqual b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
   zaehler1*nenner2 >= zaehler2*nenner1
 
-let isLessOrEqual (b1:float*float) (b2:float*float) = 
+let isLessOrEqual b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
   zaehler1*nenner2 <= zaehler2*nenner1
@@ -90,9 +99,9 @@ let inline ( - ) b1 b2 =
 let inline ( * ) b1 b2 =
   mult b1 b2
 
-let inline ( / ) b1 b2 =
+let inline ( / ) b1 b2=
   div b1 b2
-  
+
 let inline ( > ) b1 b2 =
   isGreater b1 b2
 

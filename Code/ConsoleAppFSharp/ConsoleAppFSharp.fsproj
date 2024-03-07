@@ -7,10 +7,12 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <WarningsAsErrors>3239;$(WarningsAsErrors)</WarningsAsErrors>
+    <NoWarn>FS0086</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <WarningsAsErrors>3239;$(WarningsAsErrors)</WarningsAsErrors>
+    <NoWarn>FS0086</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
