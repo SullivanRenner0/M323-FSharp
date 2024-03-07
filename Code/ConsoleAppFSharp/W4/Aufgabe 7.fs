@@ -3,7 +3,7 @@ open System;
 
 let divide a b = 
   match b with
-    | 0.0 -> raise(new DivideByZeroException())
+    | 0.0 -> raise (new DivideByZeroException())
     | _ -> a/b
 
 let rec ggT a b =
@@ -15,11 +15,18 @@ let rec ggT a b =
 let asFloat b = 
   let zaehler, nenner = b
   divide zaehler nenner
-  
+
 let kuerze b = 
   let zaehler, nenner = b
   let ggt = ggT zaehler nenner
   (int)(divide zaehler ggt), (int)(divide nenner ggt)
+
+let normiere b = 
+  let zaehler, nenner = b
+  let norm = match nenner with
+              | n when n < 0 -> (-zaehler, -nenner)
+              | _ -> (zaehler, nenner)
+  kuerze norm
 
 let erweitere b f = 
   let zaehler, nenner = b
@@ -30,31 +37,31 @@ let kehrwert (zaehler, nenner) =
 
 let multk b f = 
   let zaehler, nenner = b
-  kuerze (zaehler*f, nenner*f)
+  normiere (zaehler*f, nenner*f)
 
 let mult b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
-  kuerze (zaehler1*zaehler2, nenner1*nenner2)
+  normiere (zaehler1*zaehler2, nenner1*nenner2)
 
 let divk b divisor = 
   let zaehler, nenner = b
-  kuerze (zaehler, nenner * divisor)
+  normiere (zaehler, nenner * divisor)
 
 let div b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
-  kuerze (zaehler1*nenner2, nenner1*zaehler2)
+  normiere (zaehler1*nenner2, nenner1*zaehler2)
 
 let add b1 b2 = 
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
-  kuerze (zaehler1*nenner2 + zaehler2*nenner1, nenner1*nenner2)
+  normiere (zaehler1*nenner2 + zaehler2*nenner1, nenner1*nenner2)
 
 let sub b1 b2 =
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
-  kuerze (zaehler1*nenner2 - zaehler2*nenner1, nenner1*nenner2)
+  normiere (zaehler1*nenner2 - zaehler2*nenner1, nenner1*nenner2)
 
 
 

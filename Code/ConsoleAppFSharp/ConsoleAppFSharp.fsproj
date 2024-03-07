@@ -25,7 +25,11 @@
     <Compile Include="W4\Tuples.fs" />
     <Compile Include="W4\Aufgabe 7.fs" />
     <Compile Include="W5\Records.fs" />
+    <Compile Include="W5\Konzepte.fs" />
+    <Content Include="W5\Konzepte.txt" />
     <Compile Include="Program.fs" />
   </ItemGroup>
+
+  <ItemGroup />
 
 </Project>
