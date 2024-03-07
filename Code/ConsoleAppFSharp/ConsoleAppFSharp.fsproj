@@ -5,6 +5,14 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningsAsErrors>3239;$(WarningsAsErrors)</WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningsAsErrors>3239;$(WarningsAsErrors)</WarningsAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="W2\Aufgabe 1.fs" />
     <Compile Include="W2\Aufgabe 2.fs" />
