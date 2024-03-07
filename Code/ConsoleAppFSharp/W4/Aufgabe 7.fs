@@ -43,3 +43,6 @@ let sub (b1:float*float) (b2:float*float) =
   let zaehler1, nenner1 = b1
   let zaehler2, nenner2 = b2
   (zaehler1*nenner2 - zaehler2*nenner1, nenner1*nenner2)
+
+let equal (b1:float*float) (b2:float*float) = 
+    asFloat(b1) = asFloat(b2)
