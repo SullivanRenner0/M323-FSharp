@@ -1,0 +1,29 @@
+- Immutability:
+Wenn eine Variable einmal einen Wert zugewiesen bekommt, kann dieser nicht mehr geändert werden
+
+- Type Inference:
+Der Compiler erkennt automatisch den Typ von Variablen und Ausdrücken, was die Notwendigkeit von expliziten Typdeklarationen reduziert. Dadurch wird der Code kompakter
+
+- Pattern Matching:
+Muster sind Regeln zum Transformieren von Eingabedaten. Sie werden verwendet, um Daten mit logischen Strukturen zu vergleichen, Daten in einzelne Bestandteile zu zerlegen oder auf unterschiedliche Weise Informationen aus Daten zu extrahieren.
+
+- Pure Function:
+Eine Funktion gibt mit den gleichen Parametern immer das gleiche Resultat zurück
+
+- Recursion:
+Eine Funktion ruft sich selbst auf
+
+- Anonymous Functions:
+Lambda Funktionen, Funktionen die nur vom deklarierenden Statement benutzt werden kann.
+
+- Higher-Order Function:
+Eine funktion welche eine andere Funktion als Parameter nimmt, oder eine Funktion zurückgibt, oder beides.
+
+- Currying:
+Es bezeichnet die Umwandlung einer Funktion mit mehreren Argumenten in eine Sequenz von Funktionen, wobei jede Funktion genau ein Argument hat.
+
+- Partial Application:
+Eine Funktion gibt nicht alle Argumente für eine Funktion mit, und gibt dann eine funktion zurück welche die restlichen Argumente als Parameter erwartet.
+
+- Closure:
+Variablen welche in einer Anonymen Funktion werden, werden automatisch mitgegeben
