@@ -25,8 +25,7 @@ let calcAvgGrade (student: Student) =
       |> Array.average
 
 let calcMedianGrade (student: Student) = 
-    let sortedGrades = getGradesArray student
-                       |> Array.sort
+    let sortedGrades = getGradesArray student |> Array.sort
 
     let len = Array.length sortedGrades
     if len % 2 = 0 then
@@ -40,9 +39,7 @@ let checkIfPassed (student: Student) =
     if avgGrade < 4.0 then
         false
     else
-    
-    let diffTo4Sum = getGradesArray student 
-                       |> Array.filter (fun x -> x < 4.0)
-                       |> Array.sumBy (fun x -> 4.0 - x)
-
-    diffTo4Sum <= 1.0
+    getGradesArray student 
+      |> Array.filter (fun x -> x < 4.0)
+      |> Array.sumBy (fun x -> 4.0 - x)
+      |> fun x -> x <= 1.0
