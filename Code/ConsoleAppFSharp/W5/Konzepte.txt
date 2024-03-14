@@ -26,4 +26,4 @@ Es bezeichnet die Umwandlung einer Funktion mit mehreren Argumenten in eine Sequ
 Eine Funktion gibt nicht alle Argumente für eine Funktion mit, und gibt dann eine funktion zurück welche die restlichen Argumente als Parameter erwartet.
 
 - Closure:
-Variablen welche in einer Anonymen Funktion werden, werden automatisch mitgegeben
+Variablen welche in einer Anonymen Funktion verwendet werden, werden automatisch vom Compiler erkannt und können ohne Probleme benutzt werden
