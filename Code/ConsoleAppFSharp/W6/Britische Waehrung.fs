@@ -1,4 +1,4 @@
-﻿module Kapitel_3
+﻿module Britische_Waehrung
 
 type Money = {Pound: int; Shilling: int; Pence: int}
 

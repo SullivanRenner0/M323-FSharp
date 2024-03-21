@@ -27,9 +27,9 @@
     <Compile Include="W5\Records.fs" />
     <Compile Include="W5\Konzepte.fs" />
     <Content Include="W5\Konzepte.txt" />
+    <Compile Include="W6\Britische Waehrung.fs" />
+    <Compile Include="W6\Straight_Line.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-
-  <ItemGroup />
 
 </Project>
