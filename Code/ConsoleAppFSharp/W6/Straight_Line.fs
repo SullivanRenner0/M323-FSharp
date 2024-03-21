@@ -38,7 +38,7 @@ let PrepareFromString (s:string) =
 
 let TryParseLine (s: string) : Option<Line> = 
     let equation = PrepareFromString s
-    let pattern = "^y=([+-]?[0-9]+)x([+-][0-9]+)$"
+    let pattern = "^y=([+-]?[0-9]+(?:\.[0-9]+)?)x([+-][0-9]+(?:\.[0-9]+)?)$"
     let matchResult = Regex.Match(equation, pattern)
     if matchResult.Success then
         let a = float matchResult.Groups.[1].Value
