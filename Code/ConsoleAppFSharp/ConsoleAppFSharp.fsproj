@@ -30,6 +30,7 @@
     <Compile Include="W6\Britische Waehrung.fs" />
     <Compile Include="W6\Straight_Line.fs" />
     <Compile Include="W7\Lists.fs" />
+    <Compile Include="W7\Lists_Aufgaben.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

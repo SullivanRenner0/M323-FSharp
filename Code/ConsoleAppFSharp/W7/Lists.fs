@@ -42,8 +42,7 @@ let rec sumSquareOfOdd list =
 let rec bubblesort (list) = 
   let rec swap list = 
     match list with
-    | [] -> []
-    | [x] -> [x]
+    | [] | [_] -> list
     | first :: second :: tail -> 
       if first < second then
         first :: swap (second :: tail)
