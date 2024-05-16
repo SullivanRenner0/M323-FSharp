@@ -32,6 +32,7 @@
     <Compile Include="W7\Lists.fs" />
     <Compile Include="W7\Lists_Aufgaben.fs" />
     <Compile Include="W8\Lists.fs" />
+    <Compile Include="W10\Lists.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

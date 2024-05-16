@@ -66,7 +66,7 @@ let joinStringsUnderscore =
 
 
 let sortAtrikel (list: (int*string*int) list) : (int*string*int) list = 
-  List.sortBy (fun (preis, name, menge) -> preis) list
+  List.sortBy (fun (preis, _, _) -> preis) list
 
 let standardAbweichung (list: float list) =
   let avg = List.average list
