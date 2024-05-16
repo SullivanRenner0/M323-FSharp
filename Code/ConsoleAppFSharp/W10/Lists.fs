@@ -17,17 +17,13 @@ let validPhone (phone: string) =
 
 
 let filterForInvalidPhoneTuple (list: (string*string*string) list) =
-  let isInvalid (contact: string*string*string) = 
-    let (_, _, phone) = contact
-    validPhone phone |> not
-
-  List.filter isInvalid list
+  List.filter (fun (_,_,phone) -> not(validPhone phone)) list
 
 
 type Contact = { Name: string; Email: string; Phone: string; }
 
 let filterForInvalidPhone (list: Contact list) =
-  List.filter (fun contact -> validPhone contact.Phone |> not) list
+  List.filter (fun contact -> not(validPhone contact.Phone)) list
     
 
 
