@@ -14,7 +14,12 @@ type Info = Amount * ArticleName * Price
 type Infoseq = Info list
 type Bill = {Items: Infoseq; Total: Price}
 
-let rec findArticle (article: ArticleCode) (register: Register) = 
+let rec createRegister articles : Register = 
+  match articles with
+  | [] -> []
+  | (code, name, price) :: rest -> (code, (name, price)) :: createRegister rest  
+
+let rec findArticle (article: ArticleCode) (register: Register) : ArticleCode * Price = 
   match register with
   | (a, name_price)::_ when article = a -> name_price
   | _::rest -> findArticle article rest
