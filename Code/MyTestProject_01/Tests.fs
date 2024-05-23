@@ -49,52 +49,51 @@ type TestClass () =
       Assert.AreEqual(expected, result)
 
     [<TestMethod>]
-    [<ExpectedException(typeof<System.DivideByZeroException>)>]
     member _.TestDivideByZero() =
-      let result = MyLibrary_01.divide 2.0 0.0
-      Assert.Fail("Should have thrown DivideByZeroException")
+      try
+        let result = MyLibrary_01.divide 2.0 0.0
+        Assert.Fail("Should have thrown DivideByZeroException")
+      with
+      | :? System.DivideByZeroException -> ()
+      | x -> Assert.Fail("Should have thrown DivideByZeroException, not " + x.GetType().Name)
 
 
     // Test operation function
+    member _.getOperation op = 
+      match op with
+      | "add" -> MyLibrary_01.add
+      | "sub" -> MyLibrary_01.sub
+      | "multiply" -> MyLibrary_01.multiply
+      | "divide" -> MyLibrary_01.divide
+      | _ -> failwith "Invalid operation"
 
     [<TestMethod>]
-    [<DataRow(1.0, 2.0, 3.0)>]
-    [<DataRow(10.0, 2.0, 12.0)>]
-    [<DataRow(-1.0, 2.0, 1.0)>]
-    [<DataRow(1.0, -2.0, -1.0)>]
-    member _.TestOperation_Add(x, y, expected) = 
-      let result = MyLibrary_01.operation x y MyLibrary_01.add
-      Assert.AreEqual(expected, result)
+    [<DataRow(1.0, 2.0, 3.0, "add")>]
+    [<DataRow(10.0, 2.0, 12.0, "add")>]
+    [<DataRow(-1.0, 2.0, 1.0, "add")>]
+    [<DataRow(1.0, -2.0, -1.0, "add")>]
+    [<DataRow(1.0, 2.0, -1.0, "sub")>]
+    [<DataRow(10.0, 2.0, 8.0, "sub")>]
+    [<DataRow(-1.0, 2.0, -3.0, "sub")>]
+    [<DataRow(1.0, -2.0, 3.0, "sub")>]
+    [<DataRow(1.0, 2.0, 2.0, "multiply")>]
+    [<DataRow(10.0, 2.0, 20.0, "multiply")>]
+    [<DataRow(-1.0, 2.0, -2.0, "multiply")>]
+    [<DataRow(1.0, -2.0, -2.0, "multiply")>]
+    [<DataRow(1.0, 2.0, 0.5, "divide")>]
+    [<DataRow(10.0, 2.0, 5.0, "divide")>]
+    [<DataRow(-1.0, 2.0, -0.5, "divide")>]
+    [<DataRow(1.0, -2.0, -0.5, "divide")>]
+    member this.TestOperation(x, y, excpected, op) = 
+      let func = this.getOperation op
+      let result = MyLibrary_01.operation x y func
+      Assert.AreEqual(excpected, result)
 
     [<TestMethod>]
-    [<DataRow(1.0, 2.0, -1.0)>]
-    [<DataRow(10.0, 2.0, 8.0)>]
-    [<DataRow(-1.0, 2.0, -3.0)>]
-    [<DataRow(1.0, -2.0, 3.0)>]
-    member _.TestOperation_Sub(x, y, expected) =
-      let result = MyLibrary_01.operation x y MyLibrary_01.sub
-      Assert.AreEqual(expected, result)
-
-    [<TestMethod>]
-    [<DataRow(1.0, 2.0, 2.0)>]
-    [<DataRow(10.0, 2.0, 20.0)>]
-    [<DataRow(-1.0, 2.0, -2.0)>]
-    [<DataRow(1.0, -2.0, -2.0)>]
-    member _.TestOperation_Multiply(x, y, expected) =
-      let result = MyLibrary_01.operation x y MyLibrary_01.multiply
-      Assert.AreEqual(expected, result)
-
-    [<TestMethod>]
-    [<DataRow(1.0, 2.0, 0.5)>]
-    [<DataRow(10.0, 2.0, 5.0)>]
-    [<DataRow(-1.0, 2.0, -0.5)>]
-    [<DataRow(1.0, -2.0, -0.5)>]
-    member _.TestOperation_Divide(x, y, expected) =
-      let result = MyLibrary_01.operation x y MyLibrary_01.divide
-      Assert.AreEqual(expected, result)
-
-    [<TestMethod>]
-    [<ExpectedException(typeof<System.DivideByZeroException>)>]
     member _.TestOperation_DivideByZero() =
-      let result = MyLibrary_01.operation 2.0 0.0 MyLibrary_01.divide
-      Assert.Fail("Should have thrown DivideByZeroException")
+      try
+        let result = MyLibrary_01.operation 2.0 0.0 MyLibrary_01.divide
+        Assert.Fail("Should have thrown DivideByZeroException")
+      with
+      | :? System.DivideByZeroException -> ()
+      | x -> Assert.Fail("Should have thrown DivideByZeroException, not " + x.GetType().Name)
