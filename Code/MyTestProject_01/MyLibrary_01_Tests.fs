@@ -4,7 +4,7 @@ open MyFSharpLib_01;
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
 [<TestClass>]
-type TestClass () =
+type MyLibrary_01_Tests () =
 
     [<TestMethod>]
     [<DataRow("World", "Hello World")>]
@@ -17,7 +17,7 @@ type TestClass () =
     [<DataRow(10.0, 2.0, 12.0)>]
     [<DataRow(-1.0, 2.0, 1.0)>]
     [<DataRow(1.0, -2.0, -1.0)>]
-    member _.TestAdd(x, y, expected) =
+    member _.Add_Test(x, y, expected) =
       let result = MyLibrary_01.add x y
       Assert.AreEqual(expected , result)
 
@@ -26,7 +26,7 @@ type TestClass () =
     [<DataRow(10.0, 2.0, 8.0)>]
     [<DataRow(-1.0, 2.0, -3.0)>]
     [<DataRow(1.0, -2.0, 3.0)>]
-    member _.TestSub(x, y, expected) =
+    member _.Sub_Test(x, y, expected) =
       let result = MyLibrary_01.sub x y
       Assert.AreEqual(expected, result)
 
@@ -35,7 +35,7 @@ type TestClass () =
     [<DataRow(10.0, 2.0, 20.0)>]
     [<DataRow(-1.0, 2.0, -2.0)>]
     [<DataRow(1.0, -2.0, -2.0)>]
-    member _.TestMultiply(x, y, expected) =
+    member _.Multiply_Test(x, y, expected) =
       let result = MyLibrary_01.multiply x y
       Assert.AreEqual(expected, result)
 
@@ -44,12 +44,12 @@ type TestClass () =
     [<DataRow(10.0, 2.0, 5.0)>]
     [<DataRow(-1.0, 2.0, -0.5)>]
     [<DataRow(1.0, -2.0, -0.5)>]
-    member _.TestDivide(x, y, expected) =
+    member _.Divide_Test(x, y, expected) =
       let result = MyLibrary_01.divide x y
       Assert.AreEqual(expected, result)
 
     [<TestMethod>]
-    member _.TestDivideByZero() =
+    member _.Divide_ByZero_Test() =
       try
         let result = MyLibrary_01.divide 2.0 0.0
         Assert.Fail("Should have thrown DivideByZeroException")
@@ -84,13 +84,13 @@ type TestClass () =
     [<DataRow(10.0, 2.0, 5.0, "divide")>]
     [<DataRow(-1.0, 2.0, -0.5, "divide")>]
     [<DataRow(1.0, -2.0, -0.5, "divide")>]
-    member this.TestOperation(x, y, excpected, op) = 
+    member this.Operation_Test(x, y, excpected, op) = 
       let func = this.getOperation op
       let result = MyLibrary_01.operation x y func
       Assert.AreEqual(excpected, result)
 
     [<TestMethod>]
-    member _.TestOperation_DivideByZero() =
+    member _.Operation_Divide_ByZero_Test() =
       try
         let result = MyLibrary_01.operation 2.0 0.0 MyLibrary_01.divide
         Assert.Fail("Should have thrown DivideByZeroException")
