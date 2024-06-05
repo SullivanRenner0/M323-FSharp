@@ -21,11 +21,13 @@ module Lists =
     | head :: tail -> (f head) :: map tail f
 
   let standardAbweichung (list: float list) =
+    if list.Length <= 1 then
+      0.0
+    else
     let avg = List.average list
     let diffsToAvg = map list (fun x -> x - avg)
     let squareDiffs = map diffsToAvg (fun x -> x * x)
     let sumOfSquareDiffs = List.sum squareDiffs
-    let t = 1.0 / (float list.Length)
   
-    let variance = t * sumOfSquareDiffs
+    let variance = sumOfSquareDiffs / (float list.Length)
     Math.Sqrt(variance)
