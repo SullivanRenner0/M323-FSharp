@@ -108,9 +108,9 @@ type MyLibrary_01_Tests () =
 
     [<DataRow(2, 4, 2, -1)>]
     [<TestMethod>]
-    member _.Mitternacht_Test_OneResults(a :float, b:float, c:float, expected1 : float) = 
+    member _.Mitternacht_Test_OneResults(a :float, b:float, c:float, expected : float) = 
       let resultat = MyLibrary_01.mitternacht a b c
-      Assert.AreEqual(resultat, [expected1])
+      Assert.AreEqual(resultat, [expected])
 
     [<DataRow(4, 4, 4)>]
     [<TestMethod>]

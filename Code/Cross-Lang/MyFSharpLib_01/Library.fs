@@ -44,3 +44,38 @@ module MyLibrary_01 =
       let x4 = (-b) - x2;
     
       [x3 / (2.0*a); x4 / (2.0*a)]
+
+    type Produkt = {Name:string; Preis: float; Anzverkauft : int}
+
+    let list = [{Name = "T1"; Preis = 1.0; Anzverkauft = 1};{Name = "T2"; Preis = 2.0; Anzverkauft = 2};{Name = "T3"; Preis = 3.0; Anzverkauft = 3}]
+
+    let rec sumProduktPreise (list:Produkt list) = 
+      match list with
+      | [] -> []
+      | head :: tail ->
+        (head.Name, head.Preis * float(head.Anzverkauft)) :: (sumProduktPreise tail)
+
+    let rec sumProduktPreiseAbove_100_000 (list:Produkt list) = 
+      match list with
+      | [] -> []
+      | head :: tail ->
+        let rest = sumProduktPreise tail
+        let sum = head.Preis * float(head.Anzverkauft)
+        if sum >= 100_000 then
+          (head.Name, sum) :: rest
+        else
+          rest
+
+    let rec getGesamtSumme (list : Produkt list) = 
+      match list with
+      | [] -> 0.0
+      | head :: tail ->
+        head.Preis * float(head.Anzverkauft) + (getGesamtSumme tail)
+
+    let rec applyFaktor (list : Produkt list) (faktor : float) = 
+      match list with 
+      | [] -> []
+      | head :: tail ->
+        let rest = (applyFaktor tail faktor)
+        let newElement = (head.Name, head.Preis * faktor, head.Preis * faktor * float(head.Anzverkauft))
+        newElement :: rest
