@@ -24,6 +24,9 @@ module MyLibrary_01 =
       op x y
 
     let mitternacht a b c = 
+      if a = 0.0 then
+        raise (new DivideByZeroException())
+      else
       let x1 = b * b - (4.0*a*c)
       let x2 = Math.Sqrt(x1)
     

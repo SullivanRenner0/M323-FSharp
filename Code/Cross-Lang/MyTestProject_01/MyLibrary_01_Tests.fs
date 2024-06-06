@@ -103,3 +103,12 @@ type MyLibrary_01_Tests () =
     member _.Mitternacht_Test(a :float, b:float, c:float, expected1 : float, expected2 :float) = 
       let resultat = MyLibrary_01.mitternacht a b c
       Assert.AreEqual(resultat, (expected1, expected2))
+
+    [<TestMethod>]
+    member _.Mitternacht_Divide_ByZero_Test() =
+      try
+        let result = MyLibrary_01.mitternacht 0.0 0.0 0.0
+        Assert.Fail("Should have thrown DivideByZeroException")
+      with
+      | :? System.DivideByZeroException -> ()
+      | x -> Assert.Fail("Should have thrown DivideByZeroException, not " + x.GetType().Name)
