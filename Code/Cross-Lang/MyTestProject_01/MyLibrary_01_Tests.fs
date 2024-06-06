@@ -1,5 +1,6 @@
 namespace MyTestProject_01
 
+open System;
 open MyFSharpLib_01;
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
@@ -97,18 +98,31 @@ type MyLibrary_01_Tests () =
       with
       | :? System.DivideByZeroException -> ()
       | x -> Assert.Fail("Should have thrown DivideByZeroException, not " + x.GetType().Name)
-      
+    
+
     [<DataRow(3, 9, 6, -1, -2)>]
     [<TestMethod>]
-    member _.Mitternacht_Test(a :float, b:float, c:float, expected1 : float, expected2 :float) = 
+    member _.Mitternacht_Test_TwoResults(a :float, b:float, c:float, expected1 : float, expected2 :float) = 
       let resultat = MyLibrary_01.mitternacht a b c
-      Assert.AreEqual(resultat, (expected1, expected2))
+      Assert.AreEqual(resultat, [expected1; expected2])
+
+    [<DataRow(2, 4, 2, -1)>]
+    [<TestMethod>]
+    member _.Mitternacht_Test_OneResults(a :float, b:float, c:float, expected1 : float) = 
+      let resultat = MyLibrary_01.mitternacht a b c
+      Assert.AreEqual(resultat, [expected1])
+
+    [<DataRow(4, 4, 4)>]
+    [<TestMethod>]
+    member _.Mitternacht_Test_NoResults(a :float, b:float, c:float) = 
+      let resultat = MyLibrary_01.mitternacht a b c
+      Assert.AreEqual(resultat, [])
 
     [<TestMethod>]
     member _.Mitternacht_Divide_ByZero_Test() =
       try
-        let result = MyLibrary_01.mitternacht 0.0 0.0 0.0
+        let result = MyLibrary_01.mitternacht 0 10 10
         Assert.Fail("Should have thrown DivideByZeroException")
       with
-      | :? System.DivideByZeroException -> ()
+      | :? DivideByZeroException -> ()
       | x -> Assert.Fail("Should have thrown DivideByZeroException, not " + x.GetType().Name)

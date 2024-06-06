@@ -23,14 +23,24 @@ module MyLibrary_01 =
     let operation x y op = 
       op x y
 
-    let mitternacht a b c = 
+    let mitternacht a b c =
+      let x1 = b * b - (4.0*a*c)
+
+      if x1 < 0.0 then
+        []
+      else 
+      
       if a = 0.0 then
         raise (new DivideByZeroException())
       else
-      let x1 = b * b - (4.0*a*c)
+
+      if x1 = 0.0 then
+        [-b / (2.0*a)] // (-b +- 0) / 2a
+      else
+
       let x2 = Math.Sqrt(x1)
-    
+      
       let x3 = (-b) + x2;
       let x4 = (-b) - x2;
     
-      (x3 / (2.0*a), x4 / (2.0*a))
+      [x3 / (2.0*a); x4 / (2.0*a)]
