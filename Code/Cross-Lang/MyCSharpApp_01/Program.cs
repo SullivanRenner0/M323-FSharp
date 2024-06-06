@@ -1,10 +1,9 @@
-﻿namespace MyCSharpApp_01;
+﻿using MyFSharpLib_01;
 
-using MyFSharpLib_01;
-
+namespace MyCSharpApp_01;
 internal class Program
 {
-    static int Main(string[] args)
+    private static int Main(string[] _)
     {
         Console.WriteLine("Hello, World!");
 
