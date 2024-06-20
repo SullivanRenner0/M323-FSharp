@@ -39,12 +39,12 @@ let rec sumSquareOfOdd list =
   filterOdd(list) |> squareAll |> sum
 
 
-let rec bubblesort (list) = 
+let rec bubblesortBy f (list) = 
   let rec swap list = 
     match list with
     | [] | [_] -> list
     | first :: second :: tail -> 
-      if first < second then
+      if f(first) < f(second) then
         first :: swap (second :: tail)
       else
         second :: swap (first :: tail)
@@ -57,3 +57,6 @@ let rec bubblesort (list) =
       loop swappedList
 
   loop list
+
+let bubblesort list =
+  bubblesortBy (fun x -> x) list
