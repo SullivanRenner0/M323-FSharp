@@ -35,6 +35,7 @@
     <Compile Include="W10\Lists.fs" />
     <Compile Include="W10\Cash.fs" />
     <Compile Include="W10\MapColoring.fs" />
+    <Compile Include="W18\Happy Numbers.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
